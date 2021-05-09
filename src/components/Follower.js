@@ -13,7 +13,23 @@ class Follower extends React.Component {
       .catch((err) => console.log(err));
   }
   render() {
-    return <div></div>;
+    const { followers } = this.state;
+    if (followers.length === 0) return <div>followers: {followers.length}</div>;
+    return (
+      <div className="followers-wrapper">
+        {followers.map((follower) => (
+          <div key={follower.id} className="follower-card">
+            <img
+              style={{ width: "100px", borderRadius: "10%" }}
+              src={follower.avatar_url}
+              alt={follower.login}
+            />
+            <h4>{follower.login}</h4>
+            <p>{follower.location}</p>
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 
